@@ -25,18 +25,24 @@ public class Ej2 {
 
         try (FileInputStream fil = new FileInputStream(file);
              ObjectInputStream fl1 = new ObjectInputStream(fil)) {
-            HashMap<String, Double> notasDeserializadas = (HashMap<String, Double>) fl1.readObject();
+            HashMap<String, Double> nota = (HashMap<String, Double>) fl1.readObject();
             System.out.println("*** Deserialitzamos el HashMap ***");
 
             System.out.println("*** Calculamos la Media del curso ****");
+
             double suma = 0;
-            for (double nota : notasDeserializadas.values()) {
-                suma += nota;
+
+            for (double not : nota.values()) {
+                suma += not;
             }
-            double media = suma / notasDeserializadas.size();
+
+            double media = suma / nota.size();
             System.out.println("La media es: " + media);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        finally {
+            System.out.println("*** Fin ***");
         }
     }
 }
