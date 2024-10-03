@@ -9,30 +9,34 @@ public class Random {
     public static void main(String[] args) throws IOException {
         RandomAccessFile fitxer = new RandomAccessFile("dades.txt", "rw");
 
-        // Escribir valores iniciales en el archivo
         fitxer.writeDouble(5);
         fitxer.writeDouble(10);
         fitxer.writeDouble(20);
         fitxer.writeDouble(15);
         fitxer.writeDouble(30);
+        long v = fitxer.length();
+        for (long i = 0; i < v; i += 8) {
+            fitxer.seek(i);
+            double value = fitxer.readDouble();
+            System.out.println("Posición " + i + ": " + value);
+        }
 
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Ingrese el número a reemplazar: ");
-        double numberToReplace = scanner.nextDouble();
+        double reemplazo = scanner.nextDouble();
 
         System.out.print("Inserta el nuevo valor: ");
         double newValue = scanner.nextDouble();
 
-        long fileSize = fitxer.length();
+        long ft = fitxer.length();
 
 
-        for (long i = 0; i < fileSize; i += 8) {
+        for (long i = 0; i < ft; i += 8) {
             fitxer.seek(i);
-            double currentValue = fitxer.readDouble();
+            double numact = fitxer.readDouble();
 
-
-            if (currentValue == numberToReplace) {
+            if (numact == reemplazo) {
                 fitxer.seek(i);
                 fitxer.writeDouble(newValue);
             }
@@ -41,7 +45,7 @@ public class Random {
 
         fitxer.seek(0);
         System.out.println("Valores actualizados:");
-        for (long i = 0; i < fileSize; i += 8) {
+        for (long i = 0; i < ft; i += 8) {
             fitxer.seek(i);
             double value = fitxer.readDouble();
             System.out.println("Posición " + i + ": " + value);
