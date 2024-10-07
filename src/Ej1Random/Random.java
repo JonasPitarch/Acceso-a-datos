@@ -31,7 +31,6 @@ public class Random {
 
         long ft = fitxer.length();
 
-
         for (long i = 0; i < ft; i += 8) {
             fitxer.seek(i);
             double numact = fitxer.readDouble();
@@ -42,7 +41,6 @@ public class Random {
             }
         }
 
-
         fitxer.seek(0);
         System.out.println("Valores actualizados:");
         for (long i = 0; i < ft; i += 8) {
@@ -50,7 +48,6 @@ public class Random {
             double value = fitxer.readDouble();
             System.out.println("Posición " + i + ": " + value);
         }
-
         fitxer.close();
     }
 }
