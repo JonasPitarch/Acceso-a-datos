@@ -1,6 +1,6 @@
 package HTML;
 
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.Scanner;
 
 public class Ej1 {
@@ -17,20 +17,21 @@ public class Ej1 {
         System.out.println("Dime un pequeño párrafo");
         String texto4=scanner.nextLine();
         try (PrintWriter pw = new PrintWriter("archivo.html", "UTF-8")) {
-            pw.println("<html>");
-            pw.println("<head>");
+            BufferedWriter bw = new BufferedWriter(pw);
+            pw.write("<html>");
+            pw.write("<head>");
             pw.write("<title>"+ titulo +"</title>");
-            pw.println("</head>");
-            pw.println("<body>");
-            pw.println("<h1>Web de Jonás</h1>");
-            pw.println("<p>"+texto4+"</p>");
-            pw.println("<ul>");
-            pw.println("<li>"+texto+"</li>");
-            pw.println("<li>"+texto2+"</li>");
-            pw.println("<li>"+texto3+"</li>");
-            pw.println("</ul>");
-            pw.println("</body>");
-            pw.println("</html>");
+            pw.write("</head>");
+            pw.write("<body>");
+            pw.write("<h1>Web de Jonás</h1>");
+            pw.write("<p>"+texto4+"</p>");
+            pw.write("<ul>");
+            pw.write("<li>"+texto+"</li>");
+            pw.write("<li>"+texto2+"</li>");
+            pw.write("<li>"+texto3+"</li>");
+            pw.write("</ul>");
+            pw.write("</body>");
+            pw.write("</html>");
 
         } catch (Exception e) {
             e.printStackTrace();
